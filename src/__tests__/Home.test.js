@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderWithRouter } from "../test-utils";
 import Home from "../pages/Home";
 
 test("a user can search the GitHub API for a list of users", async () => {
-  render(<Home />);
+  renderWithRouter(<Home />);
 
   // type the username into the search bar
   userEvent.type(screen.getByLabelText(/enter a github username/i), "octo");

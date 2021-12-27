@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UserInfo from "../components/UserInfo";
 
 function Home() {
   const [usernameInput, setUsernameInput] = useState("");
@@ -27,7 +28,7 @@ function Home() {
       {users.length > 0 ? (
         <ul>
           {users.map((user) => (
-            <li key={user.login}>{user.login}</li>
+            <UserInfo key={user.login} user={user} />
           ))}
         </ul>
       ) : null}

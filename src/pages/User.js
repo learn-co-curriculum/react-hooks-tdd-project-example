@@ -5,7 +5,7 @@ function User() {
 
   return (
     <div>
-      <h1>{username}</h1>
+      <h1>{username}'s Repos</h1>
     </div>
   );
 }
