@@ -1,7 +1,7 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get("https://api.github.com/search/users?q=octo", (req, res, ctx) => {
+  rest.get("https://api.github.com/search/users", (req, res, ctx) => {
     return res(
       ctx.json({
         total_count: 5058,

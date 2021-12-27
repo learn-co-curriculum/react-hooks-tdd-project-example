@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { server } from "./mocks/server";
+import { server } from "./__mocks__/server";
 
 beforeAll(() => server.listen());
 
