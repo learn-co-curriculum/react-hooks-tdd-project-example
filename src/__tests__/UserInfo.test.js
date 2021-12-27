@@ -30,19 +30,22 @@ test("it displays all the necessary data about a GitHub user", () => {
   // username
   expect(
     screen.getByRole("heading", {
-      name: exampleUser.login,
+      name: "octocat",
     })
   ).toBeInTheDocument();
 
   // avatar image
-  const avatarImage = screen.getByAltText(`${exampleUser.login} avatar`);
-  expect(avatarImage).toHaveAttribute("src", exampleUser.avatar_url);
+  const avatarImage = screen.getByAltText(`octocat avatar`);
+  expect(avatarImage).toHaveAttribute(
+    "src",
+    "https://avatars.githubusercontent.com/u/583231?v=4"
+  );
 
   // HTML URL
   const githubHomepage = screen.getByRole("link", { name: /github homepage/i });
-  expect(githubHomepage).toHaveAttribute("href", exampleUser.html_url);
+  expect(githubHomepage).toHaveAttribute("href", "https://github.com/octocat");
 
   // link to the detail page
   const detailLink = screen.getByRole("link", { name: /view details/i });
-  expect(detailLink).toHaveAttribute("href", `/users/${exampleUser.login}`);
+  expect(detailLink).toHaveAttribute("href", "/users/octocat");
 });
