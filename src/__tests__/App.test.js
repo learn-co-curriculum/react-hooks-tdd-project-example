@@ -9,10 +9,15 @@ test("renders the home page by default", () => {
   expect(screen.getByText(/github explorer/i)).toBeInTheDocument();
 });
 
-test("renders user page when on the /users/:username route", () => {
+test("renders user page when on the /users/:username route", async () => {
   renderWithRouter(<App />, { route: "/users/octocat" });
 
-  expect(screen.getByText(/octocat/i)).toBeInTheDocument();
+  expect(
+    await screen.findByRole("heading", {
+      name: /octocat/,
+      exact: false,
+    })
+  ).toBeInTheDocument();
 });
 
 test("clicking the user details redirects to the user page", async () => {
@@ -24,7 +29,7 @@ test("clicking the user details redirects to the user page", async () => {
   // click search
   userEvent.click(
     screen.getByRole("button", {
-      name: "Search",
+      name: /search/i,
     })
   );
 
@@ -38,6 +43,59 @@ test("clicking the user details redirects to the user page", async () => {
   userEvent.click(detailLink);
 
   expect(
-    await screen.findByRole("heading", { name: "octocat's Repos" })
+    await screen.findByRole("heading", { name: /octocat's repos/i })
+  ).toBeInTheDocument();
+});
+
+test("displays the profile information for a single user", async () => {
+  renderWithRouter(<App />, { route: "/users/octocat" });
+
+  // username
+  expect(
+    await screen.findByRole("heading", {
+      name: /octocat/,
+      exact: false,
+    })
+  ).toBeInTheDocument();
+
+  // avatar image
+  const avatarImage = await screen.findByAltText(/octocat avatar/i);
+  expect(avatarImage).toHaveAttribute(
+    "src",
+    "https://avatars.githubusercontent.com/u/583231?v=4"
+  );
+
+  // HTML URL
+  const githubHomepage = await screen.findByRole("link", {
+    name: /github homepage/i,
+  });
+  expect(githubHomepage).toHaveAttribute("href", "https://github.com/octocat");
+
+  // bio
+  expect(await screen.findByText(/github's mascot/i)).toBeInTheDocument();
+
+  // location
+  expect(await screen.findByText(/san francisco/i)).toBeInTheDocument();
+
+  // email
+  const email = await screen.findByRole("link", { name: "octocat@github.com" });
+  expect(email).toHaveAttribute("href", "mailto:octocat@github.com");
+});
+
+test("displays a list of repositories for a single user", async () => {
+  renderWithRouter(<App />, { route: "/users/octocat" });
+
+  // repositories
+  expect(
+    await screen.findByRole("heading", {
+      name: /boysenberry-repo-1/,
+      exact: false,
+    })
+  ).toBeInTheDocument();
+  expect(
+    await screen.findByRole("heading", {
+      name: /git-consortium/,
+      exact: false,
+    })
   ).toBeInTheDocument();
 });
