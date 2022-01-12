@@ -1,7 +1,12 @@
 # [Instructors Only] React Test-Driven Development Project Example
 
-This is an example of a completed project that meets the requirements for the
-[React Test-Driven Development Project Guidelines][project guidelines].
+This repository contains an example of a completed project that meets the
+requirements for the [React Test-Driven Development Project
+Guidelines][project guidelines]:
+
+- https://github.com/learn-co-curriculum/react-hooks-tdd-project-example
+
+You can use this as a baseline for reviewing students' code.
 
 Install the dependencies:
 
