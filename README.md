@@ -1,4 +1,4 @@
-# React Test-Driven Development Project
+# [Instructors Only] React Test-Driven Development Project Example
 
 This is an example of a completed project that meets the requirements for the
 [React Test-Driven Development Project Guidelines][project guidelines].

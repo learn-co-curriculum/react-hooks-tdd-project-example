@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import User from "./pages/User";
+import Home from "./components/Home";
+import User from "./components/User";
 
 function App() {
   return (

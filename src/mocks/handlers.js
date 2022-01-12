@@ -1,5 +1,7 @@
 import { rest } from "msw";
 
+// This mocked responses represent the minimal data needed from an actual API call for testing purposes
+
 export const handlers = [
   rest.get("https://api.github.com/search/users", (req, res, ctx) => {
     return res(

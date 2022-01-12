@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithRouter } from "../test-utils";
-import Home from "../pages/Home";
+import Home from "../components/Home";
 
 test("a user can search the GitHub API for a list of users", async () => {
   renderWithRouter(<Home />);
